@@ -1,0 +1,116 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  // Global
+  "theme": {
+    "mode": "dark",
+    "dark": "One Dark"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "dark": "Material Icon Theme"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "http_proxy": "socks5h://localhost:10808",
+
+  // Languages
+  "editor": {
+    "format_on_save": "on",
+    "remove_trailing_whitespace": true,
+    "ensure_final_newline": true,
+    "colorize_brackets": true,
+    "soft_wrap": "editor_width",
+    "indent_guides": {
+      "coloring": "indent_aware"
+    }
+  },
+  "languages": {
+    "Python": {
+      "soft_wrap": "none"
+    },
+    "JSON": {
+      "tab_size": 2
+    },
+    "YAML": {
+      "tab_size": 2
+    }
+  },
+
+  // Terminal
+  "terminal": {
+    "blinking": "off",
+    "max_scroll_history_lines": 2000,
+    "cursor_shape": "block",
+    "shell": "zsh",
+    "detect_venv": "on"
+  },
+
+  // Windows
+  "tab_bar": {
+    "show_nav_history_buttons": true,
+    "show": true
+  },
+  "git_panel": {
+    "file_icons": false,
+    "tree_view": true
+  },
+  "project_panel": {
+    "auto_open": {
+      "on_create": false
+    },
+    "diagnostic_badges": true
+  },
+  "preview_tabs": {
+    "enable_preview_from_file_finder": true
+  },
+  "tabs": {
+    "show_diagnostics": "off",
+    "file_icons": false,
+    "git_status": false
+  },
+  "title_bar": {
+    "show_project_items": true,
+    "show_onboarding_banner": true,
+    "show_user_menu": true,
+    "show_user_picture": false,
+    "show_branch_icon": false
+  },
+  "close_on_file_delete": true,
+
+  // Search
+  "search": {
+    "center_on_match": true,
+    "include_ignored": true
+  },
+  "use_smartcase_search": true,
+
+  // Auto
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "auto_update": false,
+  "when_closing_with_no_tabs": "keep_window_open",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  // Other
+  "agent": {
+    "favorite_models": [],
+    "model_parameters": [],
+    "enable_feedback": false
+  },
+  "calls": {
+    "mute_on_join": true
+  }
+}
