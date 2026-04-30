@@ -1,0 +1,20 @@
+[variables]
+name = "asong56"
+email = " 238927804+asong56@users.noreply.github.com"
+github_user = "asong56"
+
+[variables.ui]
+font_family = "Monaspace Neon"
+font_size = 13
+theme = "dark"
+cursor_style = "block"
+
+[variables.paths]
+bin = "~/bin"
+templates = "~/.config/templates"
+did_root = "~/did"
+
+[variables.features]
+enable_did = true
+use_brew = true
+is_server = false
