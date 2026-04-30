@@ -17,7 +17,8 @@ files = {
 files = {
     ".config/Caddyfile" = "~/.config/caddy/Caddyfile",
     ".config/bottom.toml" = "~/.config/bottom/bottom.toml",
-    ".config/config.ghostty" = "~/.config/ghostty/config"
+    ".config/config.ghostty" = "~/.config/ghostty/config",
+    ".config/starship.toml" = "~/.config/starship.toml"
 }
 
 [scripts]
