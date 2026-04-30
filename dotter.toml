@@ -1,0 +1,33 @@
+[zsh]
+files = { "zsh/.zshrc" = "~/.zshrc", ".bashrc" = "~/.bashrc" }
+
+[zed]
+files = {
+    "zed/settings.json" = "~/.config/zed/settings.json",
+    "zed/asevka.toml" = "~/.config/zed/asevka.toml"
+}
+
+[git]
+files = {
+    "git/.gitconfig" = "~/.gitconfig",
+    "git/.gitignore_global" = "~/.gitignore_global"
+}
+
+[app_config]
+files = {
+    ".config/Caddyfile" = "~/.config/caddy/Caddyfile",
+    ".config/bottom.toml" = "~/.config/bottom/bottom.toml",
+    ".config/config.ghostty" = "~/.config/ghostty/config"
+}
+
+[scripts]
+files = { "bin/" = "~/bin/" }
+
+[did]
+files = { "did/" = "~/did/" }
+
+[templates]
+files = { "templates/" = "~/.config/templates/" }
+
+[system]
+files = { "Brewfile" = "~/Brewfile" }
