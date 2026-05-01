@@ -43,47 +43,34 @@ alias dotfiles='cd "$DOTFILES"'
 ########################################
 alias g='git'
 alias gs='git status -sb'
-alias ga='git add'
-alias gaa='git add .'
-alias gp='git push'
-alias gpl='git pull --rebase'
-alias gf='git fetch --prune'
 alias gd='git diff'
-alias gds='git diff --staged'
 alias gl='git lg -20'
-alias gla='git lga -20'
 alias gsw='git switch'
-alias gbr='git branch'
-alias grst='git restore'
-alias gcp='git cherry-pick'
-alias gwip='git add -A && git commit -m "wip"'
 
 ########################################
-# Node / npm
+# Bun
 ########################################
-alias nr='npm run'
-alias ni='npm install'
-alias nid='npm install --save-dev'
-alias nrd='npm run dev'
-alias nrb='npm run build'
-alias nrt='npm run test'
-alias nrp='npm run preview'
+alias br='bun run'
+alias ba='bun add'
+alias bad='bun add -d'
+alias bd='bun dev'
+alias bb='bun run build'
+alias bt='bun test'
 
 ########################################
-# Python
+# uv (Python)
 ########################################
-alias py='python3'
-alias pip='pip3'
-alias venv='python3 -m venv .venv && source .venv/bin/activate'
+alias py='uv run python'
+alias venv='uv venv && source .venv/bin/activate'
 alias activate='source .venv/bin/activate'
 
 ########################################
 # Misc utilities
 ########################################
-alias j='z'                             # zoxide short alias
-alias serve='python3 -m http.server'   # quick local server
-alias reload='exec zsh'                # reload shell
-alias path='print -l $path'            # one entry per line
+alias j='z'
+alias serve='uv run python -m http.server'
+alias reload='exec zsh'
+alias path='print -l $path'
 alias myip='curl -s ifconfig.me'
 alias ports='lsof -i -P -n | grep LISTEN'
 
