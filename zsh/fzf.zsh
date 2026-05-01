@@ -5,16 +5,7 @@
 command -v fzf &>/dev/null || return
 
 # ── Source shell integration ─────────────
-if [[ "$OS" == mac ]]; then
-    local _fzf_base="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/fzf"
-    [[ -f "$_fzf_base/shell/key-bindings.zsh" ]] && source "$_fzf_base/shell/key-bindings.zsh"
-    [[ -f "$_fzf_base/shell/completion.zsh"   ]] && source "$_fzf_base/shell/completion.zsh"
-    unset _fzf_base
-else
-    [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-    [[ -f /usr/share/doc/fzf/examples/completion.zsh   ]] && source /usr/share/doc/fzf/examples/completion.zsh
-    # Also works with: eval "$(fzf --zsh)"  (fzf >= 0.48)
-fi
+eval "$(fzf --zsh)"
 
 # ── Default command ───────────────────────
 # Use fd if available — faster and respects .gitignore
@@ -35,7 +26,7 @@ else
 fi
 
 # ── Global defaults ───────────────────────
-# Catppuccin Mocha palette (matches nvim theme)
+# Catppuccin Mocha
 export FZF_DEFAULT_OPTS="
   --height=50%
   --layout=reverse
@@ -66,24 +57,9 @@ else
 fi
 
 # ── CTRL-R: history search ────────────────
-export FZF_CTRL_R_OPTS="
-  --no-preview
-  --layout=reverse
-  --border=rounded
-  --prompt='hist > '
-"
+export FZF_CTRL_R_OPTS="--no-preview --prompt='hist > '"
 
 # ── Custom functions using fzf ────────────
-
-# fzf-cd: interactive directory jump (fallback when zoxide is unavailable)
-fzf-cd() {
-    local dir
-    dir=$(
-        fd --type d --hidden --follow --exclude .git --exclude node_modules 2>/dev/null \
-        | fzf --preview 'eza --tree --level=2 --color=always {} 2>/dev/null || ls -la {}'
-    )
-    [[ -n "$dir" ]] && cd "$dir"
-}
 
 # fzf-branch: switch git branch interactively
 fzf-branch() {
@@ -104,6 +80,16 @@ fzf-kill() {
     local pid
     pid=$(ps -ef | fzf --header='Select process to kill' --no-preview | awk '{print $2}')
     [[ -n "$pid" ]] && kill -${1:-9} "$pid" && echo "Killed PID $pid"
+}
+
+# fzf-cd: browse directories from cwd
+fzf-cd() {
+    local dir
+    dir=$(
+        fd --type d --hidden --follow --exclude .git --exclude node_modules 2>/dev/null \
+        | fzf --preview 'eza --tree --level=2 --color=always {} 2>/dev/null || ls -la {}'
+    )
+    [[ -n "$dir" ]] && cd "$dir"
 }
 
 unset _fzf_file_preview
