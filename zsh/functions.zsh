@@ -39,78 +39,64 @@ extract() {
 }
 
 ########################################
-# save — pull + add + commit [+ push]
-# Usage: save [path] ["message"] [--push]
+# save — lint, stash, pull, pop, commit, push
 ########################################
 save() {
     git rev-parse --is-inside-work-tree &>/dev/null || {
         echo "❌ Not a git repository." >&2; return 1
     }
 
-    local target="." msg="Update $(date +%F)" do_push=false
+    # ── Lint staged files ─────────────────
+    local staged
+    staged=$(git status --porcelain | awk '{print $2}')
 
-    for arg in "$@"; do
-        case "$arg" in
-            --push) do_push=true ;;
-            *)
-                if   [[ "$target" == "."         ]]; then target="$arg"
-                elif [[ "$msg"    == "Update "* ]]; then msg="$arg"
-                fi
-                ;;
-        esac
-    done
+    if echo "$staged" | grep -q '\.py$'; then
+        echo "🔍 Linting Python..."
+        ruff check --fix . && ruff format . || {
+            echo "❌ Ruff: errors remain — fix before saving." >&2; return 1
+        }
+    fi
 
-    echo "📥 Pulling upstream changes..."
-    git pull --rebase --autostash || { echo "❌ Pull failed." >&2; return 1; }
+    if echo "$staged" | grep -qE '\.(js|ts|jsx|tsx|json)$'; then
+        echo "🔍 Linting JS/TS..."
+        biome check --write . || {
+            echo "❌ Biome: errors remain — fix before saving." >&2; return 1
+        }
+    fi
 
-    git add "$target"
+    # ── Sync with remote ──────────────────
+    local stashed=false
+    if [[ -n $(git status --porcelain) ]]; then
+        git stash push -u -m "save-$(date +%F-%T)" || { echo "❌ Stash failed." >&2; return 1; }
+        stashed=true
+    fi
 
-    if git diff-index --quiet HEAD --; then
+    git pull --rebase || {
+        $stashed && git stash pop
+        echo "❌ Pull failed." >&2
+        return 1
+    }
+
+    if $stashed; then
+        git stash pop || { echo "⚠️  Conflict on stash pop — resolve manually." >&2; return 1; }
+    fi
+
+    # ── Stage & commit ────────────────────
+    git add .
+
+    local n s top
+    n=$(git diff --cached --name-only | wc -l | tr -d ' ')
+    (( n == 1 )) && s="" || s="s"
+
+    if [[ "$n" -eq 0 ]]; then
         echo "ℹ️  Nothing to commit."
-        $do_push && git push
         return 0
     fi
 
-    git commit -m "$msg" && echo "✅ Committed: $msg"
+    top=$(git diff --cached --numstat | awk '{print $1+$2, $3}' | sort -rn | head -1 | awk '{print $2}')
 
-    if $do_push; then
-        git push && echo "🚀 Pushed."
-    else
-        echo "ℹ️  Run 'git push' or 'save --push' to upload."
-    fi
-}
-
-########################################
-# note — search ~/Me.archive with fzf
-# Usage: note [query]
-########################################
-note() {
-    local base="${NOTE_DIR:-$HOME/Me.archive}"
-    local query="${*:-}"
-
-    if command -v fzf &>/dev/null; then
-        local preview_cmd
-        if command -v bat &>/dev/null; then
-            preview_cmd='bat --style=numbers,header --color=always {}'
-        else
-            preview_cmd='head -60 {}'
-        fi
-
-        local file
-        file=$(
-            grep -rl --include="*.md" "${query}" "$base" 2>/dev/null \
-            | fzf --query="$query" \
-                  --prompt='note > ' \
-                  --preview="$preview_cmd" \
-                  --preview-window='right:60%:wrap' \
-                  --bind='ctrl-/:toggle-preview'
-        )
-        [[ -n "$file" ]] && "$EDITOR" "$file"
-    else
-        # Fallback: plain grep
-        grep -rn "${query}" "$base" --include="*.md" --color=always \
-        | less -R
-    fi
+    git commit -m "change: ${n} file${s} changed, most changed ${top}"
+    git push && echo "🚀 Pushed."
 }
 
 ########################################
@@ -138,7 +124,7 @@ json() {
     if command -v jq &>/dev/null; then
         jq '.' "${1:--}"
     else
-        python3 -m json.tool "${1:--}"
+        uv run python -m json.tool "${1:--}"
     fi
 }
 
