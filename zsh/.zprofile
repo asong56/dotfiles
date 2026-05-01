@@ -1,4 +1,3 @@
-export PROMPT_COMMAND="history -a; history -n"
 export LESS='-R -F -X'
 export EDITOR="zed --wait"
 export VISUAL="zed --wait"
