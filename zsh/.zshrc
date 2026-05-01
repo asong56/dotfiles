@@ -12,7 +12,7 @@ setopt INC_APPEND_HISTORY
 
 HISTSIZE=5000
 SAVEHIST=10000
-HISTFILE="${HISTFILE:-$HOME/.zsh_history}"
+HISTFILE="$HOME/.zsh_history"
 
 ########################################
 # 2. Aliases & Functions & Local Overrides
