@@ -1,0 +1,21 @@
+# Copy to ~/.gitconfig.local and fill in.
+# ~/.gitconfig includes this file automatically — never commit .gitconfig.local.
+
+[user]
+	# Your real email (overrides the noreply one in .gitconfig)
+	# email = you@example.com
+
+	# GPG signing key fingerprint
+	# signingkey = ABC123...
+
+[commit]
+	# Uncomment to sign all commits
+	# gpgsign = true
+
+[url "git@github-work:"]
+	# Remap work repos to a different SSH identity
+	# insteadOf = https://github.com/work-org/
+
+[core]
+	# Override SSH key for this machine
+	# sshCommand = ssh -i ~/.ssh/id_ed25519_work
