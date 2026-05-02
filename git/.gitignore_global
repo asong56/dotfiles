@@ -19,7 +19,19 @@ Thumbs.db
 *.swo
 *~
 
-# === 3. Generic Logs ===
+# === 3. Secrets & Environment ===
+.env
+.env.*
+!.env.example
+
+# === 4. Python ===
+.venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.pytest_cache/
+
+# === 5. Generic Logs ===
 *.log
 *.tmp
 *.temp
