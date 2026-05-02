@@ -1,21 +1,37 @@
 [user]
-	name = Bairu Song
+	name = asong56
 	email = 238927804+asong56@users.noreply.github.com
+
 [core]
 	editor = code --wait
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
+	pager = delta
+
 [init]
 	defaultBranch = main
-[alias]
-	st = status
-	co = checkout
-	br = branch
-	cm = commit
-	unstage = reset HEAD --
-	last = log -1 HEAD
-	lg = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)- %an, %ar%Creset' --abbrev-commit
+
+[diff]
+	algorithm = histogram
+
+[delta]
+	navigate = true
+	side-by-side = true
+
+[rerere]
+	enabled = true
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
 [color]
 	ui = auto
+
+[alias]
+	lg  = log --graph --decorate --pretty=format:'%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)- %an, %ar%Creset' --abbrev-commit
+
 [include]
 	path = ~/.gitconfig.local
