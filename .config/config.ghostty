@@ -1,4 +1,4 @@
-theme = nord
+theme = Catppuccin Mocha
 minimum-contrast = 1.1
 background-opacity = 0.95
 background-blur = macos-glass-regular
