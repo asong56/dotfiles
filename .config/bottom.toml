@@ -172,60 +172,53 @@ whole_word = false
 
 
 # ---------------------------------------------- #
-[styles]
+[styles] # Catppuccin Mocha
+
 # default, gruvbox, nord (& *-light)
-theme = "nord"
+# theme = "nord"
 
-#[styles.cpu]
-#all_entry_color = "green"
-#avg_entry_color = "red"
-#cpu_core_colors = ["light magenta", "light yellow", "light cyan", "light green", "light blue", "cyan", "green", "blue"]
+[styles.cpu]
+all_entry_color = "#f5e0dc"
+avg_entry_color = "#eba0ac"
+cpu_core_colors = ["#f38ba8","#fab387","#f9e2af","#a6e3a1","#74c7ec","#cba6f7"]
 
-#[styles.memory]
-#ram_color = "light magenta"
-#cache_color = "light red"
-#swap_color = "light yellow"
-#arc_color = "light cyan"
-#gpu_colors = ["light blue", "light red", "cyan", "green", "blue", "red"]
+[styles.memory]
+ram_color = "#a6e3a1"
+cache_color = "#f38ba8"
+swap_color = "#fab387"
+gpu_colors = ["#74c7ec","#cba6f7","#f38ba8","#fab387","#f9e2af","#a6e3a1"]
+arc_color = "#89dceb"
 
-#[styles.network]
-#rx_color = "light magenta"
-#tx_color = "light yellow"
-#rx_total_color = "light cyan"
-#tx_total_color = "light green"
+[styles.network]
+rx_color = "#a6e3a1"
+tx_color = "#f38ba8"
+rx_total_color = "#89dceb"
+tx_total_color = "#a6e3a1"
 
-#[styles.battery]
-#high_battery_color = "green"
-#medium_battery_color = "yellow"
-#low_battery_color = "red"
+[styles.battery]
+high_battery_color = "#a6e3a1"
+medium_battery_color = "#f9e2af"
+low_battery_color = "#f38ba8"
 
-#[styles.tables]
-#headers = {color = "light blue", bold = true}
+[styles.tables]
+headers = {color = "#f5e0dc"}
 
-#[styles.graphs]
-#graph_color = "gray"
-#legend_text = {color = "gray"}
+[styles.graphs]
+graph_color = "#a6adc8"
+legend_text = {color = "#a6adc8"}
 
-#[styles.widgets]
-#border_color = "gray"
-#selected_border_color = "light blue"
-#widget_title = {color = "gray"}
-#text = {color = "gray"}
-#selected_text = {color = "black", bg_color = "light blue"}
-#disabled_text = {color = "dark gray"}
-# Disabled by default
-#bg_color = "black"
-# Only on Linux
-#thread_text = {color = "green"}
+[styles.widgets]
+border_color = "#585b70"
+selected_border_color = "#f5c2e7"
+widget_title = {color = "#f2cdcd"}
+text = {color = "#cdd6f4"}
+selected_text = {color = "#11111b", bg_color = "#cba6f7"}
+disabled_text = {color = "#1e1e2e"}
 
-# Layout - layouts follow a pattern like this:
-# [[row]] represents a row in the application.
-# [[row.child]] represents either a widget or a column.
-# [[row.child.child]] represents a widget.
-#
-# All widgets must have the type value set to one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
-# All layout components have a ratio value - if this is not set, then it defaults to 1.
-# The default widget layout:
+
+# Default Layout
+# All widgets must have one of ["cpu", "mem", "proc", "net", "temp", "disk", "empty"].
+# All layout components have a ratio value - defaults to 1.
 #[[row]]
 #  ratio=30
 #  [[row.child]]
