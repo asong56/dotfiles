@@ -1,39 +1,38 @@
-# ── Homebrew Extensions ──────────────────
-tap "homebrew/bundle"
 tap "homebrew/services"
 
-# ── Shell & navigation ───────────────────
-brew "dotter"
+# ── Shell & Navigation ───────────────────
 brew "zsh"
 brew "fzf"
-brew "zoxide"
 brew "fd"
+# brew "dotter"
+# brew "zoxide"
 
-# ── Modern CLI replacements ──────────────
-brew "topgrade"
-brew "starship"
-brew "ripgrep"
-brew "bottom"
-brew "git"
+# ── Modern CLI & Utilities ───────────────
+brew "7zz"
+brew "croc"
+brew "eget"
+brew "xh"
+brew "mpv"
+brew "gost"
+# brew "topgrade"
+# brew "bottom"
+# brew "rga"
+# brew "restic"
 
-# ── Dev tools ────────────────────────────
-brew "gh"
-
-# ── Runtimes ─────────────────────────────
+# ── Dev Tools ────────────────────────────
+brew "jj"
+brew "go-task"
 brew "uv"
-brew "ruff"
-brew "duckdb"
-brew "bun"
-brew "rustup"
-brew "biome"
+# brew "gh"
+# brew "duckdb"
 
 # ── Applications ─────────────────────────
-# cask "zed"
+cask "helium-browser"
+cask "zed"
+cask "hiddify"
+cask "gopeed"
+cask "geph"
 # cask "ghostty"
-# cask "beekeeper-studio"
-
-# cask "localsend"
-
-# cask "proton-pass"
 # cask "telegram"
 # cask "discord"
+# cask "localsend"
