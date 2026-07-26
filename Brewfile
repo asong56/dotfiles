@@ -4,6 +4,7 @@ tap "homebrew/services"
 brew "zsh"
 brew "fzf"
 brew "fd"
+brew "pure"
 # brew "dotter"
 # brew "zoxide"
 
